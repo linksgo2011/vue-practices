@@ -9,15 +9,16 @@
 <script>
     export default {
         name: 'counter',
-        props:{
+        props: {
+            index: Number,
             value: Number,
         },
         methods: {
             minus: function () {
-                this.$emit('update', this.value - 1)
+                this.$emit('update', this.index, this.value - 1)
             },
             plus: function () {
-                this.$emit('update', this.value + 1)
+                this.$emit('update', this.index, this.value + 1)
             }
         }
     }
