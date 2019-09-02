@@ -7,17 +7,14 @@
 </template>
 
 <script>
-    import {mapState, mapMutations} from "vuex";
-
     export default {
         name: "todo-list-filter",
-        computed: {
-            ...mapState(['currentFilter'])
+        props: {
+            currentFilter: String
         },
         methods: {
-            ...mapMutations(['updateCurrentFilter']),
             setFilter: function (currentFilter) {
-                this.updateCurrentFilter(currentFilter);
+                this.$emit("updateFiler", currentFilter);
             }
         }
     }

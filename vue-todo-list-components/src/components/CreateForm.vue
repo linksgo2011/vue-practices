@@ -1,13 +1,11 @@
 <template>
     <div class="input-form">
-        <input type="input" v-model="inputtingItem">
+        <input type="input" @change="handleInput">
         <button @click="createTodo(inputtingItem)">Add</button>
     </div>
 </template>
 
 <script>
-    import {mapMutations} from "vuex";
-
     export default {
         name: "create-form",
         data: function () {
@@ -16,7 +14,12 @@
             }
         },
         methods: {
-            ...mapMutations(['createTodo'])
+            handleInput: function (event) {
+                this.inputtingItem = event.target.value;
+            },
+            createTodo(content) {
+                this.$emit("createTodo", content);
+            }
         }
     }
 </script>

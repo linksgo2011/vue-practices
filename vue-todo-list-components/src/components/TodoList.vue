@@ -1,24 +1,25 @@
 <template>
     <ul class="items">
         <template v-for="(item,index) in todoList">
-            <li :key="index" :class="item.status" v-show="item.status === currentFilter || currentFilter === 'all'">
+            <li :key="index" :class="item.status">
                 <input name="status-toggle" type="checkbox" @change="toggleActive(index)">
-                <a href="" class="text">{{item.text}}</a>
+                <a href="" class="text">{{item.content}}</a>
             </li>
         </template>
     </ul>
 </template>
 
 <script>
-    import {mapState, mapMutations} from "vuex";
 
     export default {
         name: "todo-list",
-        computed: {
-            ...mapState(['todoList','currentFilter'])
+        props:{
+            todoList:Array
         },
         methods: {
-            ...mapMutations(['toggleActive'])
+            toggleActive: function (index) {
+                this.$emit("toggleActive",index);
+            }
         }
     }
 </script>
