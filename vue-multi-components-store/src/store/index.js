@@ -10,7 +10,6 @@ export default {
             state.counters.forEach(element => {
                 sum = sum + element.value;
             });
-            console.log(14,sum);
             return sum;
         }
     },
