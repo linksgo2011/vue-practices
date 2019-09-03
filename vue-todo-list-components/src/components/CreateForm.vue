@@ -19,6 +19,7 @@
             },
             createTodo(content) {
                 this.$emit("createTodo", content);
+                this.inputtingItem = "";
             }
         }
     }

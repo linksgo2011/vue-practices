@@ -1,0 +1,50 @@
+<html>
+    <head></head>
+    <body>
+        <div id="app">
+
+            <!-- v-model -->
+            <div id="addTodoForm">
+                <input type="text" v-model="inputtingText">
+                <button @click="addTodo">add</button>
+            </div>
+
+            <!-- v-for -->
+            <div id="list">
+                <ul>
+                    <li v-for="todo in list">
+                        {{todo.content}}
+                    </li>
+                </ul>
+            </div>
+
+            <div id="filter">
+                <button>Active</button>
+                <button>Done</button>
+                <button>All</button>
+            </div>
+        </div>
+
+        <script src="https://unpkg.com/vue"></script>
+
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    message:                            'Hello Vue.js!',
+                    inputtingText: "",
+                    list:[]
+                },
+                methods:{
+                    addTodo:function(event){
+                        console.log(event)
+                        this.list.push({
+                            content: this.inputtingText
+                        })
+                        console.log(this.list);
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

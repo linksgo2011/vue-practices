@@ -1,8 +1,8 @@
 <template>
     <div class="filter">
-        <a @click.prevent="setFilter('all')" :class="{active:currentFilter=='all'}">ALL</a>
-        <a @click.prevent="setFilter('active')" :class="{active:currentFilter=='active'}">Active</a>
-        <a @click.prevent="setFilter('complete')" :class="{active:currentFilter=='complete'}">Complete</a>
+        <a @click.prevent="handleFilter('all')" :class="{active:currentFilter=='all'}">ALL</a>
+        <a @click.prevent="handleFilter('active')" :class="{active:currentFilter=='active'}">Active</a>
+        <a @click.prevent="handleFilter('complete')" :class="{active:currentFilter=='complete'}">Complete</a>
     </div>
 </template>
 
@@ -12,12 +12,13 @@
     export default {
         name: "todo-list-filter",
         computed: {
-            ...mapState(['currentFilter'])
+            currentFilter: function () {
+                return this.$store.state.currentFilter;
+            }
         },
         methods: {
-            ...mapMutations(['updateCurrentFilter']),
-            setFilter: function (currentFilter) {
-                this.updateCurrentFilter(currentFilter);
+            handleFilter: function (currentFilter) {
+                this.$store.commit("updateCurrentFilter", currentFilter);
             }
         }
     }
